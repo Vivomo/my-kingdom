@@ -7,7 +7,8 @@ const Building = (props) => {
         top: props.top + 'px',
         width: props.width2D + 'px',
         height: props.height2D + 'px',
-        fontSize: props.height + 'px'
+        fontSize: props.height + 'px',
+        color: props.color
     };
     return (
         <div style={planeStyle} className="building">
@@ -26,7 +27,8 @@ Building.defaultProps = {
     height2D: 80,
     height: 320,
     left: 0,
-    top: 0
+    top: 0,
+    color: '#119b11',
 };
 
 export default Building;

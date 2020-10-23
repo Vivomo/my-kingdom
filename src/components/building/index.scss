@@ -4,9 +4,9 @@
 
     .wall {
         position: absolute;
-        border: 1px solid #fff;
-        background: rgba(#0f0, 0.2);
-
+        border: 2px solid currentColor;
+        box-shadow: 0 0 6px currentColor;
+        box-sizing: border-box;
     }
 
     .left, .right {
