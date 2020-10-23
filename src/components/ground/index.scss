@@ -3,4 +3,8 @@
     border: 1px solid #13bbff;
     width: 80%;
     height: 80%;
+
+    background: radial-gradient(ellipse at center, #444 0%, #000000 90%);
+    transform: translate3d(10%, 20%, -800px) rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+    transform-style: preserve-3d;
 }

@@ -1,7 +1,10 @@
 
 .k-map {
+    position: relative;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
     background: #222;
+
+    perspective: 3000px;
 }
