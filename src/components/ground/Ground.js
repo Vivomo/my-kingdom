@@ -12,17 +12,15 @@ const Ground = (props) => {
 
     useEffect(() => {
         let arr = [];
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 20; i++) {
             arr.push({
                 width2D: 120 + 50 * Math.random(),
                 height2D: 80 + 40 * Math.random(),
                 height: 320 + 100 * Math.random(),
-                left: `${100 * Math.random()}%`,
-                top: `${100 * Math.random()}%`,
+                left: 100 * Math.random(),
+                top: 100 * Math.random(),
             });
         }
-        arr[0].left = 0;
-        arr[0].top = 0;
         setBuildings(arr);
     }, []);
 

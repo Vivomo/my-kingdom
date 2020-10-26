@@ -3,8 +3,8 @@ import './index.scss'
 
 const Building = (props) => {
     let planeStyle = {
-        left: typeof props.left === 'string' ? props.left : props.left + 'px',
-        top: typeof props.top === 'string' ? props.top : props.top + 'px',
+        marginLeft: typeof props.left === 'string' ? props.left : props.left + 'px',
+        marginTop: typeof props.top === 'string' ? props.top : props.top + 'px',
         width: props.width2D + 'px',
         height: props.height2D + 'px',
         fontSize: props.height + 'px',

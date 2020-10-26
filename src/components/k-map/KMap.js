@@ -14,7 +14,7 @@ export default class KMap extends React.Component{
             startY: 0,
             offsetX: 0,
             offsetY: 0,
-            prevOffsetX: 80,
+            prevOffsetX: 0,
             prevOffsetY: 0,
             offsetDirection: null
         };
