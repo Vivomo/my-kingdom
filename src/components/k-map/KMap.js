@@ -117,7 +117,7 @@ export default class KMap extends React.Component{
                 cache.translateX -= cache.offsetX;
                 cache.translateY -= cache.offsetY;
             }
-            
+
             this.initCache();
         });
     }
