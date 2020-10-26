@@ -1,76 +1,116 @@
 import React from 'react';
 import Ground from '../ground';
 import './index.scss';
+import {offsetToDegree} from '../../utils';
 
-const MIN_OFFSET = 40;
-const X_DIRECTION = 0;
-const Y_DIRECTION = 1;
+const MIN_OFFSET = 30;
+const Z_DIRECTION = 0;
+const X_DIRECTION = 1;
+
+
 
 export default class KMap extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
+            translateX: 0,
+            translateY: 0,
+            rotateX: 45,
+            rotateZ: 0,
+        };
+        this.kMap = React.createRef();
+        this.cache = {
             startX: 0,
             startY: 0,
             offsetX: 0,
             offsetY: 0,
-            prevOffsetX: 0,
-            prevOffsetY: 0,
-            offsetDirection: null
+            rotateX: 45,
+            rotateZ: 0,
+            rotating: false,
+            rotateDirection: null,
+            translational: false
         };
-        this.kMap = React.createRef();
+    }
+
+    initCache = () => {
+        let cache = this.cache;
+        cache.rotating = false;
+        cache.translational = false;
+        cache.offsetX = 0;
+        cache.offsetY = 0;
+        cache.rotateDirection = null;
+    }
+
+    /**
+     * 鼠标移动相关的地图旋转逻辑
+     * @param e
+     */
+    rotate = (e) => {
+        this.updateOffset(e);
+
+        let {offsetX, offsetY, rotateDirection} = this.cache;
+        if (rotateDirection === null) {
+            if (Math.abs(offsetX) > MIN_OFFSET || Math.abs(offsetY) > MIN_OFFSET) {
+                this.cache.rotateDirection = ~~(Math.abs(offsetY) > Math.abs(offsetX));
+                this.updateRotateState();
+            }
+        } else {
+            this.updateRotateState();
+        }
+    }
+
+    updateOffset = (e) => {
+        this.cache.offsetX = this.cache.startX - e.pageX;
+        this.cache.offsetY = this.cache.startY - e.pageY;
+    }
+
+    /**
+     * 更新旋转数据
+     */
+    updateRotateState() {
+        if (this.cache.rotateDirection === X_DIRECTION) {
+            this.setState({
+                rotateX: this.cache.rotateX + offsetToDegree(this.cache.offsetY)
+            });
+        } else {
+            this.setState({
+                rotateZ: this.cache.rotateZ + offsetToDegree(this.cache.offsetX)
+            })
+        }
+    }
+
+    /**
+     * 地图平移逻辑
+     */
+    translate = (e) => {
+
     }
 
     componentDidMount() {
         let kMap = this.kMap;
 
-        let mousemove = (e) => {
-            let {startX, startY, offsetDirection} = this.state;
-            let offsetX = startX - e.pageX;
-            let offsetY = startY - e.pageY;
-
-            this.setState({
-                offsetX,
-                offsetY
-            });
-
-            if (offsetDirection === null) {
-                if (Math.abs(offsetX) > MIN_OFFSET || Math.abs(offsetY) > MIN_OFFSET) {
-                    this.setState({
-                        offsetDirection: ~~(Math.abs(offsetY) > Math.abs(offsetX))
-                    });
-                }
-            }
-        };
         kMap.current.addEventListener('mousedown', (e) => {
-            this.setState({
-                startX: e.pageX,
-                startY: e.pageY,
-                offsetDirection: null
-            });
-            kMap.current.addEventListener('mousemove', mousemove);
+            this.cache.startX = e.pageX;
+            this.cache.startY = e.pageY;
+            kMap.current.addEventListener('mousemove', e.ctrlKey ? this.rotate : this.translate);
         });
 
         kMap.current.addEventListener('mouseup', () => {
-            kMap.current.removeEventListener('mousemove', mousemove);
-            if (this.state.offsetDirection === X_DIRECTION) {
-                this.setState({
-                    prevOffsetX: this.state.prevOffsetX + this.state.offsetX,
-                    offsetX: 0
-                });
-            } else if (this.state.offsetDirection === Y_DIRECTION) {
-                this.setState({
-                    prevOffsetY: this.state.prevOffsetY + this.state.offsetY,
-                    offsetY: 0
-                });
+            kMap.current.removeEventListener('mousemove', this.rotate);
+            let cache = this.cache;
+            if (cache.rotateDirection === X_DIRECTION) {
+                cache.rotateX += offsetToDegree(cache.offsetY);
+            } else if (cache.rotateDirection === Z_DIRECTION) {
+                cache.rotateZ += offsetToDegree(cache.offsetX);
             }
+            this.initCache();
         });
     }
 
     render() {
         return (
             <div className="k-map" ref={this.kMap}>
-                <Ground offsetX={this.state.offsetX + this.state.prevOffsetX}/>
+                <Ground rotateX={this.state.rotateX} rotateZ={this.state.rotateZ}/>
             </div>
         )
     }
