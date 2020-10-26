@@ -12,7 +12,7 @@ const Ground = (props) => {
 
     useEffect(() => {
         let arr = [];
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 45; i++) {
             arr.push({
                 width2D: 120 + 50 * Math.random(),
                 height2D: 80 + 40 * Math.random(),
