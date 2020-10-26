@@ -24,6 +24,8 @@ export default class KMap extends React.Component{
             startY: 0,
             offsetX: 0,
             offsetY: 0,
+            translateX: 0,
+            translateY: 0,
             rotateX: 45,
             rotateZ: 0,
             rotating: false,
@@ -83,7 +85,12 @@ export default class KMap extends React.Component{
      * 地图平移逻辑
      */
     translate = (e) => {
-
+        this.updateOffset(e);
+        let {offsetX, offsetY, translateX, translateY} = this.cache;
+        this.setState({
+            translateX: translateX - offsetX,
+            translateY: translateY - offsetY
+        })
     }
 
     componentDidMount() {
@@ -96,13 +103,21 @@ export default class KMap extends React.Component{
         });
 
         kMap.current.addEventListener('mouseup', () => {
-            kMap.current.removeEventListener('mousemove', this.rotate);
+
             let cache = this.cache;
-            if (cache.rotateDirection === X_DIRECTION) {
-                cache.rotateX += offsetToDegree(cache.offsetY);
-            } else if (cache.rotateDirection === Z_DIRECTION) {
-                cache.rotateZ += offsetToDegree(cache.offsetX);
+            if (cache.rotateDirection !== null) {
+                kMap.current.removeEventListener('mousemove', this.rotate);
+                if (cache.rotateDirection === X_DIRECTION) {
+                    cache.rotateX += offsetToDegree(cache.offsetY);
+                } else if (cache.rotateDirection === Z_DIRECTION) {
+                    cache.rotateZ += offsetToDegree(cache.offsetX);
+                }
+            } else {
+                kMap.current.removeEventListener('mousemove', this.translate);
+                cache.translateX -= cache.offsetX;
+                cache.translateY -= cache.offsetY;
             }
+            
             this.initCache();
         });
     }
@@ -110,7 +125,12 @@ export default class KMap extends React.Component{
     render() {
         return (
             <div className="k-map" ref={this.kMap}>
-                <Ground rotateX={this.state.rotateX} rotateZ={this.state.rotateZ}/>
+                <Ground
+                    translateX={this.state.translateX}
+                    translateY={this.state.translateY}
+                    rotateX={this.state.rotateX}
+                    rotateZ={this.state.rotateZ}
+                />
             </div>
         )
     }
