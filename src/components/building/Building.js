@@ -12,12 +12,12 @@ const Building = (props) => {
     };
     return (
         <div style={planeStyle} className="building">
-            <div className="wall front"><div className="inner-box"> 前</div></div>
-            <div className="wall back"><div className="inner-box"> 后</div></div>
+            <div className="wall front"><div className="inner-box"> </div></div>
+            <div className="wall back"><div className="inner-box"> </div></div>
             <div className="wall up"><div className="inner-box"> 上</div></div>
-            <div className="wall bottom"><div className="inner-box"> 下</div></div>
-            <div className="wall left"><div className="inner-box"> 左</div></div>
-            <div className="wall right"><div className="inner-box"> 右</div></div>
+            <div className="wall bottom"><div className="inner-box"> </div></div>
+            <div className="wall left"><div className="inner-box"> </div></div>
+            <div className="wall right"><div className="inner-box"> </div></div>
         </div>
     );
 };
