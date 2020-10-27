@@ -133,9 +133,11 @@ export default class KMap extends React.Component{
     }
 
     initBuildings() {
-        let buildings = Array.from(document.querySelectorAll('.post-list li'))
+        let nameReg = /([a-z0-9-]+)\.html$/i;
+        let buildings = Array.from(document.querySelectorAll('.post-list li a'))
                             .map(item => ({
                                 title: item.innerText,
+                                name: nameReg.exec(item.href)[1],
                                 width2D: 120 + randomInt(50),
                                 height2D: 80 + randomInt(40),
                                 height: 320 + randomInt(100),

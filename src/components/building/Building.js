@@ -1,6 +1,8 @@
 import React from 'react';
 import './index.scss'
 
+import cfg from './config';
+
 const Building = (props) => {
     let planeStyle = {
         marginLeft: props.marginLeft + 'px',
@@ -12,7 +14,18 @@ const Building = (props) => {
     };
     return (
         <div style={planeStyle} className="building">
-            <div className="wall front"><div className="inner-box">123<i className="iconfont icon-youxi"/>123</div></div>
+            <div className="wall front">
+                <div className="inner-box">
+                {
+                    cfg[props.name] && cfg[props.name].type ?
+                        (
+                            <i className={`iconfont ${cfg[props.name].content}`}/>
+                        )
+                        :
+                        null
+                }
+                </div>
+            </div>
             <div className="wall back"><div className="inner-box"> </div></div>
             <div className="wall up"><div className="inner-box">{props.title}</div></div>
             <div className="wall bottom"><div className="inner-box"> </div></div>
