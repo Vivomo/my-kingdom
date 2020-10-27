@@ -5,7 +5,7 @@ import './index.scss';
 
 const Ground = (props) => {
     let style = {
-        transform: `translate3d(${props.translateX}px, ${props.translateY}px, -800px)
+        transform: `translate3d(${props.translateX}px, ${props.translateY}px, ${props.translateZ}px)
          rotateX(${props.rotateX}deg) rotateY(0deg) rotateZ(${props.rotateZ}deg)`
     };
 

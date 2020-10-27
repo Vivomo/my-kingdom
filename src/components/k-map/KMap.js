@@ -15,6 +15,7 @@ export default class KMap extends React.Component{
         this.state = {
             translateX: 0,
             translateY: 0,
+            translateZ: -800,
             rotateX: 45,
             rotateZ: 0,
             buildings: []
@@ -104,7 +105,6 @@ export default class KMap extends React.Component{
         });
 
         kMap.current.addEventListener('mouseup', () => {
-
             let cache = this.cache;
             if (cache.rotateDirection !== null) {
                 kMap.current.removeEventListener('mousemove', this.rotate);
@@ -121,6 +121,13 @@ export default class KMap extends React.Component{
 
             this.initCache();
         });
+
+        kMap.current.addEventListener('mousewheel', (e) => {
+            console.log(e.wheelDelta);
+            this.setState({
+                translateZ: this.state.translateZ + (e.wheelDelta > 0 ? 80 : -80)
+            })
+        })
     }
 
     initBuildings() {
@@ -149,6 +156,7 @@ export default class KMap extends React.Component{
                 <Ground
                     translateX={this.state.translateX}
                     translateY={this.state.translateY}
+                    translateZ={this.state.translateZ}
                     rotateX={this.state.rotateX}
                     rotateZ={this.state.rotateZ}
                     buildings={this.state.buildings}
