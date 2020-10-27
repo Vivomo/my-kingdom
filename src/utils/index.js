@@ -4,3 +4,10 @@
  * @returns {number}
  */
 export const offsetToDegree = offset => offset / 4;
+
+/**
+ * 返回一个随机整数
+ * @param max
+ * @returns {number}
+ */
+export const randomInt = max => ~~(max * Math.random());

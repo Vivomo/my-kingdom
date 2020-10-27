@@ -1,7 +1,7 @@
 import React from 'react';
 import Ground from '../ground';
 import './index.scss';
-import {offsetToDegree} from '../../utils';
+import {offsetToDegree, randomInt} from '../../utils';
 
 const MIN_OFFSET = 30;
 const Z_DIRECTION = 0;
@@ -133,11 +133,12 @@ export default class KMap extends React.Component{
         let buildings = Array.from(document.querySelectorAll('.post-list li'))
                             .map(item => ({
                                 title: item.innerText,
-                                width2D: 120 + 50 * Math.random(),
-                                height2D: 80 + 40 * Math.random(),
-                                height: 320 + 100 * Math.random(),
-                                marginLeft: 20 + 80 * Math.random(),
-                                marginTop: 20 + 80 * Math.random(),
+                                width2D: 120 + randomInt(50),
+                                height2D: 80 + randomInt(40),
+                                height: 320 + randomInt(100),
+                                marginLeft: 20 + randomInt(80),
+                                marginTop: 20 + randomInt(80),
+                                color: `rgb(${randomInt(255)}, ${randomInt(255)}, ${randomInt(255)})`
                             })).reverse();
         this.setState({
             buildings
