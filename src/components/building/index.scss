@@ -41,6 +41,11 @@
         transform: translateZ(1em);
     }
 
+    .bottom {
+        backface-visibility: hidden;
+
+    }
+
     .inner-box {
         padding: 4px;
         font-size: 18px;

@@ -10,8 +10,7 @@
     top: -10%;
     user-select: none;
 
-    background: radial-gradient(ellipse at center, #444 0%, #000000 90%);
-    //background: url("../../img/square.svg");
-    //transform: translate3d(0%, 0%, -800px) rotateX(0deg) rotateY(0deg) rotateZ(45deg);
+    //background: radial-gradient(ellipse at center, #444 0%, #000000 90%);
+    background: #119b11 url("../../img/ground-bg.png") no-repeat center / 100%;
     transform-style: preserve-3d;
 }
