@@ -123,7 +123,6 @@ export default class KMap extends React.Component{
         });
 
         kMap.current.addEventListener('mousewheel', (e) => {
-            console.log(e.wheelDelta);
             this.setState({
                 translateZ: this.state.translateZ + (e.wheelDelta > 0 ? 80 : -80)
             })
@@ -137,8 +136,8 @@ export default class KMap extends React.Component{
                                 width2D: 120 + 50 * Math.random(),
                                 height2D: 80 + 40 * Math.random(),
                                 height: 320 + 100 * Math.random(),
-                                left: 100 * Math.random(),
-                                top: 100 * Math.random(),
+                                marginLeft: 20 + 80 * Math.random(),
+                                marginTop: 20 + 80 * Math.random(),
                             })).reverse();
         this.setState({
             buildings
