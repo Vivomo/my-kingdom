@@ -14,7 +14,7 @@ const Building = (props) => {
         <div style={planeStyle} className="building">
             <div className="wall front"><div className="inner-box"> </div></div>
             <div className="wall back"><div className="inner-box"> </div></div>
-            <div className="wall up"><div className="inner-box">一二三四五六七一二三四五六七</div></div>
+            <div className="wall up"><div className="inner-box">{props.title}</div></div>
             <div className="wall bottom"><div className="inner-box"> </div></div>
             <div className="wall left"><div className="inner-box"> </div></div>
             <div className="wall right"><div className="inner-box"> </div></div>

@@ -17,6 +17,7 @@ export default class KMap extends React.Component{
             translateY: 0,
             rotateX: 45,
             rotateZ: 0,
+            buildings: []
         };
         this.kMap = React.createRef();
         this.cache = {
@@ -93,7 +94,7 @@ export default class KMap extends React.Component{
         })
     }
 
-    componentDidMount() {
+    initEventListener() {
         let kMap = this.kMap;
 
         kMap.current.addEventListener('mousedown', (e) => {
@@ -122,6 +123,26 @@ export default class KMap extends React.Component{
         });
     }
 
+    initBuildings() {
+        let buildings = Array.from(document.querySelectorAll('.post-list li'))
+                            .map(item => ({
+                                title: item.innerText,
+                                width2D: 120 + 50 * Math.random(),
+                                height2D: 80 + 40 * Math.random(),
+                                height: 320 + 100 * Math.random(),
+                                left: 100 * Math.random(),
+                                top: 100 * Math.random(),
+                            })).reverse();
+        this.setState({
+            buildings
+        });
+    }
+
+    componentDidMount() {
+        this.initEventListener();
+        this.initBuildings();
+    }
+
     render() {
         return (
             <div className="k-map" ref={this.kMap}>
@@ -130,6 +151,7 @@ export default class KMap extends React.Component{
                     translateY={this.state.translateY}
                     rotateX={this.state.rotateX}
                     rotateZ={this.state.rotateZ}
+                    buildings={this.state.buildings}
                 />
             </div>
         )
