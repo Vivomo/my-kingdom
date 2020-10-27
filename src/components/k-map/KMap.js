@@ -123,6 +123,9 @@ export default class KMap extends React.Component{
         });
 
         kMap.current.addEventListener('mousewheel', (e) => {
+            if (e.ctrlKey) {
+                e.preventDefault();
+            }
             this.setState({
                 translateZ: this.state.translateZ + (e.wheelDelta > 0 ? 80 : -80)
             })
