@@ -48,6 +48,12 @@
 
     .up {
         transform: translateZ(1em);
+        transition: box-shadow 0.3s;
+
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0 0 40px currentColor;
+        }
     }
 
     .bottom {
