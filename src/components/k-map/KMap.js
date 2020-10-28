@@ -1,7 +1,7 @@
 import React from 'react';
 import Ground from '../ground';
 import './index.scss';
-import {offsetToDegree, randomInt} from '../../utils';
+import {offsetToDegree, randomRange} from '../../utils';
 
 const MIN_OFFSET = 30;
 const Z_DIRECTION = 0;
@@ -138,16 +138,28 @@ export default class KMap extends React.Component{
                             .map(item => ({
                                 title: item.innerText,
                                 name: nameReg.exec(item.href)[1],
-                                width2D: 120 + randomInt(50),
-                                height2D: 80 + randomInt(40),
-                                height: 320 + randomInt(100),
-                                marginLeft: 20 + randomInt(80),
-                                marginTop: 20 + randomInt(80),
-                                color: `rgb(${randomInt(255)}, ${randomInt(255)}, ${randomInt(255)})`
+                                width2D: randomRange(120, 170),
+                                height2D: randomRange(80, 120),
+                                height: randomRange(320, 420),
+                                marginLeft: randomRange(20, 100),
+                                marginTop: randomRange(20, 100),
+                                color: `rgb(${randomRange(50, 255)}, ${randomRange(50, 255)}, ${randomRange(50, 255)})`
                             })).reverse();
         this.setState({
             buildings
         });
+        // let i = 0;
+        // let interval = setInterval(() => {
+        //     buildings[i].show = true;
+        //     this.setState({
+        //         buildings: [...buildings]
+        //     });
+        //     i++;
+        //     if (i === buildings.length) {
+        //         clearInterval(interval);
+        //     }
+        // }, 30);
+
     }
 
     componentDidMount() {

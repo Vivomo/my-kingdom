@@ -12,8 +12,8 @@ const Ground = (props) => {
     return (
         <div className="ground" style={style}>
             {
-                props.buildings.map((building, index) => (
-                    <Building key={index} {...building}/>
+                props.buildings.map((building) => (
+                    <Building key={building.name} {...building}/>
                 ))
             }
         </div>

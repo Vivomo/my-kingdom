@@ -1,6 +1,17 @@
 .building {
     position: relative;
     transform-style: preserve-3d;
+    transform: translateZ(6px);
+    //opacity: 0;
+    //transition: opacity 0.3s;
+    //
+    //&.building-show {
+    //    opacity: 1;
+    //}
+
+    &:hover .wall{
+        box-shadow: 0 0 20px currentColor;
+    }
 
     .wall {
         position: absolute;
@@ -8,6 +19,7 @@
         box-shadow: 0 0 6px currentColor;
         background: rgba(#000, 0.5);
         box-sizing: border-box;
+        transition: box-shadow 0.3s;
     }
 
     .left, .right {
@@ -48,12 +60,8 @@
 
     .up {
         transform: translateZ(1em);
-        transition: box-shadow 0.3s;
+        cursor: pointer;
 
-        &:hover {
-            cursor: pointer;
-            box-shadow: 0 0 40px currentColor;
-        }
     }
 
     .bottom {

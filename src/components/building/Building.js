@@ -13,7 +13,7 @@ const Building = (props) => {
         color: props.color
     };
     return (
-        <div style={planeStyle} className="building">
+        <div style={planeStyle} className={`building ${props.show ? 'building-show' : ''}`}>
             <div className="wall front">
                 <div className="inner-box">
                 {
