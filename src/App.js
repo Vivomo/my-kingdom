@@ -1,9 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import KMap from './components/k-map';
 
 import './app.scss';
 
 function App() {
+    let app = useRef(null);
+
     useEffect(() => {
         let q = document.getElementById('canvas-bg'),
             c = q.getContext('2d'),
@@ -21,10 +23,14 @@ function App() {
                 v += 10;
                 return v > 768 + r * 1e4 ? 0 : v
             })
-        }, 33)
+        }, 33);
+
+        app.current.ondragstart = (e) => {
+            e.preventDefault()
+        }
     }, []);
     return (
-        <div className="App">
+        <div className="App" ref={app}>
             <canvas id="canvas-bg"/>
             <KMap/>
         </div>
