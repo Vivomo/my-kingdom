@@ -137,6 +137,7 @@ export default class KMap extends React.Component{
         let buildings = Array.from(document.querySelectorAll('.post-list li a'))
                             .map(item => ({
                                 title: item.innerText,
+                                href: item.href,
                                 name: nameReg.exec(item.href)[1],
                                 width2D: randomRange(120, 170),
                                 height2D: randomRange(80, 120),
@@ -148,18 +149,6 @@ export default class KMap extends React.Component{
         this.setState({
             buildings
         });
-        // let i = 0;
-        // let interval = setInterval(() => {
-        //     buildings[i].show = true;
-        //     this.setState({
-        //         buildings: [...buildings]
-        //     });
-        //     i++;
-        //     if (i === buildings.length) {
-        //         clearInterval(interval);
-        //     }
-        // }, 30);
-
     }
 
     componentDidMount() {

@@ -27,7 +27,9 @@ const Building = (props) => {
                 </div>
             </div>
             <div className="wall back"><div className="inner-box"> </div></div>
-            <div className="wall up"><div className="inner-box">{props.title}</div></div>
+            <div className="wall up">
+                <a href={props.href} target="_blank" rel="noopener noreferrer" className="link inner-box">{props.title}</a>
+            </div>
             <div className="wall bottom"><div className="inner-box"> </div></div>
             <div className="wall left"><div className="inner-box"> </div></div>
             <div className="wall right"><div className="inner-box"> </div></div>
