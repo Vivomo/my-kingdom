@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss'
 
-import cfg from './config';
+import {getCfg} from './config';
 
 const Building = (props) => {
     let planeStyle = {
@@ -12,15 +12,14 @@ const Building = (props) => {
         fontSize: props.height + 'px',
         color: props.color
     };
+    let cfg = getCfg(props.name);
     return (
-        <div style={planeStyle} className={`building ${props.show ? 'building-show' : ''}`}>
+        <div style={planeStyle} className={`building ${cfg.hover ? cfg.hover.className : ''}`}>
             <div className="wall front">
                 <div className="inner-box">
                 {
-                    cfg[props.name] && cfg[props.name].type ?
-                        (
-                            <i className={`iconfont ${cfg[props.name].content}`}/>
-                        )
+                    cfg.type ?
+                        <i className={`iconfont mark ${cfg.content}`}/>
                         :
                         null
                 }

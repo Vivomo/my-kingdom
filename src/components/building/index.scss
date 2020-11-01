@@ -2,15 +2,16 @@
     position: relative;
     transform-style: preserve-3d;
     transform: translateZ(6px);
-    //opacity: 0;
-    //transition: opacity 0.3s;
-    //
-    //&.building-show {
-    //    opacity: 1;
-    //}
+
 
     &:hover .wall{
         box-shadow: 0 0 20px currentColor;
+    }
+
+    &.rotate:hover {
+        .mark {
+            animation: 2s linear rotate infinite;
+        }
     }
 
     .wall {
@@ -47,7 +48,8 @@
         .inner-box {
             text-align: center;
 
-            .iconfont {
+            .mark {
+                display: inline-block;
                 font-size: 60px;
             }
         }
@@ -84,4 +86,14 @@
         color: inherit;
     }
 
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }

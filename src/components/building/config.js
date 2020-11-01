@@ -16,7 +16,12 @@ const cfg = {
     'random-cuboid': {content: 'icon-donghua'},
     ball: {content: 'icon-donghua'},
     Gobang: {content: 'icon-qi'},
-    'solar-system': {content: 'icon-taiyangxi'},
+    'solar-system': {
+        content: 'icon-taiyangxi',
+        hover: {
+            className: 'rotate'
+        }
+    },
     canvasToImg: {content: 'icon-yuanhu'},
     cube: {content: 'icon-mofang'},
     'to-qr-code': {content: 'icon-V'},
@@ -25,7 +30,12 @@ const cfg = {
     'blog-md-test': {content: 'icon-note'},
     // 'set-code-style': {content: ''},
     'variable-declaration-of-js': {content: 'icon-note'},
-    TaiChi: {content: 'icon-taiji'},
+    TaiChi: {
+        content: 'icon-taiji',
+        hover: {
+            className: 'rotate'
+        }
+    },
     // 'matrix-style': {content: ''},
     'number-of-js': {content: 'icon-note'},
     'css-code-guide': {content: 'icon-note'},
@@ -52,5 +62,9 @@ for (let k in cfg) {
         cfg[k].type = icon;
     }
 }
+
+export const getCfg = (name) => {
+    return cfg[name] || {};
+};
 
 export default cfg;
