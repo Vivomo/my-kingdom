@@ -1,9 +1,5 @@
 .ground {
     position: absolute;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     width: 120%;
     height: 120%;
     left: -10%;
@@ -12,4 +8,55 @@
 
     background: #119b11 url("../../img/ground-bg.png") no-repeat center / 100% 100%;
     transform-style: preserve-3d;
+
+    .building-wrap {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .data-list {
+        position: absolute;
+        padding-left: 20%;
+        display: flex;
+        flex-direction: column;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        overflow-x: hidden;
+        background: rgba(#000, 0.5);
+        transform: rotateX(180deg) translateZ(2px);
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background: rgba(#119b11, 0.5);
+        }
+
+        .scroll-content {
+            height: 120px;
+            background: rgba(#999, 0.5);
+        }
+
+        .data-link-wrap {
+            padding-left: 1em;
+            font-size: 1.5em;
+            color: #fff;
+            line-height: 2em;
+        }
+
+        .data-link {
+            color: #fff;
+        }
+    }
 }

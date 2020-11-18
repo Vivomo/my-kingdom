@@ -13,7 +13,8 @@ function App() {
             h = q.height = window.innerHeight,
             p = new Array(256).join('1').split('');
 
-        setInterval(function () {
+        let draw = () => {
+            requestAnimationFrame(draw);
             c.fillStyle = 'rgba(0,0,0,0.05)';
             c.fillRect(0, 0, w, h);
             c.fillStyle = 'rgba(0,255,0,0.6)';
@@ -23,7 +24,10 @@ function App() {
                 v += 10;
                 return v > 768 + r * 1e4 ? 0 : v
             })
-        }, 33);
+        };
+
+        draw();
+
 
         app.current.ondragstart = (e) => {
             e.preventDefault()

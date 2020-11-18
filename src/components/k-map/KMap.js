@@ -15,8 +15,8 @@ export default class KMap extends React.Component{
         this.state = {
             translateX: 0,
             translateY: 0,
-            translateZ: -800,
-            rotateX: 45,
+            translateZ: -1200,
+            rotateX: 180,
             rotateZ: 0,
             buildings: []
         };
@@ -148,11 +148,27 @@ export default class KMap extends React.Component{
                             })).reverse();
         this.setState({
             buildings
-        });
+        }, this.updateTransform);
+    }
+
+    updateTransform = () => {
+        console.log('update')
+        let update = () => {
+            this.setState({
+                rotateX: this.state.rotateX - 1
+            }, () => {
+                if (this.state.rotateX > 45) {
+                    requestAnimationFrame(update);
+                } else {
+                    this.initEventListener();
+                }
+            });
+
+        };
+        setTimeout(update, 1500)
     }
 
     componentDidMount() {
-        this.initEventListener();
         this.initBuildings();
     }
 
